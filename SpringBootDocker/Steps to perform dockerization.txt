@@ -1,0 +1,13 @@
+Step 1: Create Docker file in main package "Dockerfile"
+Step 2: Write information in this file
+	
+	FROM openjdk:16
+	ADD target/SpringBootDocker-0.0.1-SNAPSHOT.jar SpringBootDocker-0.0.1-SNAPSHOT.jar
+	EXPOSE 8080
+	ENTRYPOINT ["java","-jar","SpringBootDocker-0.0.1-SNAPSHOT.jar"]
+
+Step 3:Clean and install (for the creation of target folder which consist of jar file)
+Step 4: Open docker Software
+Step 5: Open Terminal in Intellij IDEA
+Step 6: docker build -f Dockerfile -t Docker-File-Image . 
+step 7: docker run -p8080:8080 Docker-File-Image
