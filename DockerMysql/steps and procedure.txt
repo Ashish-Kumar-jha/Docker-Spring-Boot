@@ -2,9 +2,6 @@
 
  docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql
 
- docker build -f Dockerfile -t jpadocker .
-
-docker run -p 8080:8080 --name jpadocker --link mysql-standalone:mysql jpadocker -d jpadocker
 
 application .properties
 
@@ -23,3 +20,10 @@ Dockerfile
 	ADD target/DockerMysql-0.0.1-SNAPSHOT.jar DockerMysql-0.0.1-SNAPSHOT.jar
         EXPOSE 8080
         ENTRYPOINT ["java","-jar","DockerMysql-0.0.1-SNAPSHOT.jar"]
+
+
+
+docker build -f Dockerfile -t jpadocker .
+
+docker run -p 8080:8080 --name jpadocker --link mysql-standalone:mysql jpadocker -d jpadocker
+
