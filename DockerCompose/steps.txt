@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mysql-standalone:
+    image: 'mysql:5.7'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=demo
+    ports:
+      - "3307:3306"
+  springboot-docker-container:
+    image: springboot-docker-container
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/demo?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+    build:
+      context: "./"
+      dockerfile: "DockerFile"
+    depends_on:
+      - mysql-standalone
+
+
+>docker compose -f docker-compose.yml up
+
+docker exec -it 65fc910ab15a bin/bash
+root@65fc910ab15a:/# mysql -uroot -p demo
+Enter password:
+
+
+create table UserData(
+    -> id int AUTO_INCREMENT NOT NULL,
+    -> name varchar(20),
+    -> pno varchar(20),
+    -> PRIMARY KEY(id)
+    -> );
+
+ insert into UserData values(1,'ASHISH',700698);
+
+

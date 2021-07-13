@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DATA-ASHISH</title>
+    <style>
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+</style>
+</head>
+<body>
+<div align="center">
+    <a href="/Retrive"><button class="button">ADD DATA</button></a>
+<!--    <a href="/Register"><button class="button">EDIT DATA</button></a>-->
+<!--    <a href="/Register"><button class="button">DELETE DATA</button></a>-->
+</div>
+
+<div>
+    <table id="customers">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+        <th>NUMBER</th>
+    </tr>
+
+    <tr th:each="data : ${dataStr}">
+        <td th:text="${data.id}"></td>
+        <td th:text="${data.name}"></td>
+        <td th:text="${data.address}"></td>
+        <td th:text="${data.pno}"></td>
+    </tr>
+    </table>
+</div>
+</body>
+</html>
